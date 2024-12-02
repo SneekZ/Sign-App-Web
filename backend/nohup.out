@@ -1,0 +1,289 @@
+
+  ============================================================================  
+
+    ja-netfilter 2022.2.0
+
+    A javaagent framework :)
+
+    https://github.com/ja-netfilter/ja-netfilter
+
+  ============================================================================  
+
+Warning: Not allowed as a service: java.awt.Window.CustomTitleBarPeer
+	at com.jetbrains.JBR$WindowDecorations__Holder.<clinit>(JBR.java:642)
+	at com.jetbrains.JBR.getWindowDecorations(JBR.java:662)
+	at com.intellij.platform.ide.bootstrap.StartupUtil$startApplication$3.invokeSuspend(startup.kt:171)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:104)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:608)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:873)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:763)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:750)
+Warning: Service not supported: com.jetbrains.WindowDecorations
+	at com.jetbrains.JBR$WindowDecorations__Holder.<clinit>(JBR.java:642)
+	at com.jetbrains.JBR.getWindowDecorations(JBR.java:662)
+	at com.intellij.platform.ide.bootstrap.StartupUtil$startApplication$3.invokeSuspend(startup.kt:171)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:104)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:608)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:873)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:763)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:750)
+2024-12-02 19:32:12,891 [   2334]   WARN - #c.i.e.t.TargetBasedSdks - SDK target configuration data is absent
+2024-12-02 19:32:13,563 [   3006]   WARN - #c.i.s.ComponentManagerImpl - `preload=NOT_HEADLESS` must be used only for core services (service=com.jetbrains.rdserver.toolWindow.BackendServerToolWindowManager, plugin=com.jetbrains.codeWithMe)
+2024-12-02 19:32:13,564 [   3007]   WARN - #c.i.s.ComponentManagerImpl - `preload=TRUE` must be used only for core services (service=com.intellij.cwm.plugin.users.BackendUserManager, plugin=com.jetbrains.codeWithMe)
+2024-12-02 19:32:13,564 [   3007]   WARN - #c.i.s.ComponentManagerImpl - `preload=TRUE` must be used only for core services (service=com.intellij.cwm.plugin.ports.CwmPortForwardingToolWindowManager, plugin=com.jetbrains.codeWithMe)
+2024-12-02 19:32:13,564 [   3007]   WARN - #c.i.s.ComponentManagerImpl - `preload=TRUE` must be used only for core services (service=com.intellij.cwm.plugin.users.BackendCWMUserFocusHost, plugin=com.jetbrains.codeWithMe)
+2024-12-02 19:32:13,564 [   3007]   WARN - #c.i.s.ComponentManagerImpl - `preload=TRUE` must be used only for core services (service=com.intellij.cwm.plugin.following.FollowMeManagerService, plugin=com.jetbrains.codeWithMe)
+2024-12-02 19:32:13,564 [   3007]   WARN - #c.i.s.ComponentManagerImpl - `preload=TRUE` must be used only for core services (service=com.intellij.cwm.plugin.following.BackendProjectViewSync, plugin=com.jetbrains.codeWithMe)
+2024-12-02 19:32:13,565 [   3008]   WARN - #c.i.s.ComponentManagerImpl - `preload=TRUE` must be used only for core services (service=com.intellij.cwm.plugin.following.BackendFollowMeEditorsHost, plugin=com.jetbrains.codeWithMe)
+2024-12-02 19:32:13,565 [   3008]   WARN - #c.i.s.ComponentManagerImpl - `preload=TRUE` must be used only for core services (service=com.intellij.cwm.plugin.following.BackendFollowMeDebuggerHost, plugin=com.jetbrains.codeWithMe)
+2024-12-02 19:32:13,566 [   3009]   WARN - #c.i.s.ComponentManagerImpl - `preload=TRUE` must be used only for core services (service=com.intellij.cwm.plugin.following.FollowMeLookupSynchronizer, plugin=com.jetbrains.codeWithMe)
+2024-12-02 19:32:15,823 [   5266]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:16,132 [   5575]   WARN - #c.i.u.t.AbstractTreeNodeVisitor - unexpected component class com.intellij.ide.util.treeView.CachedTreePresentationNode
+2024-12-02 19:32:17,213 [   6656]   WARN - #o.j.p.t.TextMateService - Cannot find referenced file `./syntaxes/asp-vb-net.tmLanguage.json` in bundle `/usr/local/bin/pycharm-2024.2.4/plugins/textmate/lib/bundles/vb`
+2024-12-02 19:32:18,182 [   7625]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:18,182 [   7625]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:19,234 [   8677]   WARN - #c.i.o.a.i.ActionUpdater - 1125 ms to call on BGT ExecutorRegistryImpl$ExecutorAction#presentation@NewUiRunToolbar (com.intellij.execution.ExecutorRegistryImpl$ExecutorAction(id=Run))
+2024-12-02 19:32:19,234 [   8677]   WARN - #c.i.o.a.i.ActionUpdater - 1131 ms to call on BGT ExecutorRegistryImpl$ExecutorAction#presentation@NewUiRunToolbar (com.intellij.execution.ExecutorRegistryImpl$ExecutorAction(id=Debug))
+2024-12-02 19:32:20,876 [  10319]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:20,998 [  10441]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,708 [  11151]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,708 [  11151]   WARN - #c.j.p.PythonHelpersLocator - File coveragepy_old.zip does not exist in helpers root
+2024-12-02 19:32:21,708 [  11151]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,712 [  11155]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,712 [  11155]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,712 [  11155]   WARN - #c.j.p.PythonHelpersLocator - File coveragepy_new.zip does not exist in helpers root
+2024-12-02 19:32:21,713 [  11156]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,713 [  11156]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,714 [  11157]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,714 [  11157]   WARN - #c.j.p.PythonHelpersLocator - File coverage_runner.zip does not exist in helpers root
+2024-12-02 19:32:21,714 [  11157]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,715 [  11158]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,715 [  11158]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,716 [  11159]   WARN - #c.j.p.PythonHelpersLocator - File pydev.zip does not exist in helpers root
+2024-12-02 19:32:21,716 [  11159]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,717 [  11160]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,717 [  11160]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,717 [  11160]   WARN - #c.j.p.PythonHelpersLocator - File pydev.zip does not exist in helpers root
+2024-12-02 19:32:21,718 [  11161]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,718 [  11161]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,718 [  11161]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,718 [  11161]   WARN - #c.j.p.PythonHelpersLocator - File profiler.zip does not exist in helpers root
+2024-12-02 19:32:21,719 [  11162]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,719 [  11162]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,719 [  11162]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,720 [  11163]   WARN - #c.j.p.PythonHelpersLocator - File profiler.zip does not exist in helpers root
+2024-12-02 19:32:21,720 [  11163]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,720 [  11163]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,720 [  11163]   WARN - #c.j.p.PythonHelpersLocator - File pycharm.zip does not exist in helpers root
+2024-12-02 19:32:21,721 [  11164]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,722 [  11165]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,723 [  11166]   WARN - #c.j.p.PythonHelpersLocator - File pycharm.zip does not exist in helpers root
+2024-12-02 19:32:21,723 [  11166]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,723 [  11166]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,724 [  11167]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,724 [  11167]   WARN - #c.j.p.PythonHelpersLocator - File pycharm.zip does not exist in helpers root
+2024-12-02 19:32:21,724 [  11167]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,725 [  11168]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,725 [  11168]   WARN - #c.j.p.PythonHelpersLocator - File pycharm.zip does not exist in helpers root
+2024-12-02 19:32:21,725 [  11168]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,726 [  11169]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,726 [  11169]   WARN - #c.j.p.PythonHelpersLocator - File pycharm.zip does not exist in helpers root
+2024-12-02 19:32:21,726 [  11169]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,727 [  11170]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,727 [  11170]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,727 [  11170]   WARN - #c.j.p.PythonHelpersLocator - File pycharm.zip does not exist in helpers root
+2024-12-02 19:32:21,727 [  11170]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,728 [  11171]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,728 [  11171]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,728 [  11171]   WARN - #c.j.p.PythonHelpersLocator - File pycharm.zip does not exist in helpers root
+2024-12-02 19:32:21,728 [  11171]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,729 [  11172]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,729 [  11172]   WARN - #c.j.p.PythonHelpersLocator - File pycharm.zip does not exist in helpers root
+2024-12-02 19:32:21,729 [  11172]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,730 [  11173]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,730 [  11173]   WARN - #c.j.p.PythonHelpersLocator - File pycharm.zip does not exist in helpers root
+2024-12-02 19:32:21,731 [  11174]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,731 [  11174]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,731 [  11174]   WARN - #c.j.p.PythonHelpersLocator - File pycharm.zip does not exist in helpers root
+2024-12-02 19:32:21,733 [  11176]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,733 [  11176]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,733 [  11176]   WARN - #c.j.p.PythonHelpersLocator - File pycharm.zip does not exist in helpers root
+2024-12-02 19:32:21,734 [  11177]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,734 [  11177]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,734 [  11177]   WARN - #c.j.p.PythonHelpersLocator - File pycharm.zip does not exist in helpers root
+2024-12-02 19:32:21,735 [  11178]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,735 [  11178]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,735 [  11178]   WARN - #c.j.p.PythonHelpersLocator - File pycharm.zip does not exist in helpers root
+2024-12-02 19:32:21,736 [  11179]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,736 [  11179]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,736 [  11179]   WARN - #c.j.p.PythonHelpersLocator - File pycharm.zip does not exist in helpers root
+2024-12-02 19:32:21,737 [  11180]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,737 [  11180]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,737 [  11180]   WARN - #c.j.p.PythonHelpersLocator - File pycharm.zip does not exist in helpers root
+2024-12-02 19:32:21,738 [  11181]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,738 [  11181]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,739 [  11182]   WARN - #c.j.p.PythonHelpersLocator - File pycharm.zip does not exist in helpers root
+2024-12-02 19:32:21,739 [  11182]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,741 [  11184]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,741 [  11184]   WARN - #c.j.p.PythonHelpersLocator - File pycharm.zip does not exist in helpers root
+2024-12-02 19:32:21,750 [  11193]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,753 [  11196]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,753 [  11196]   WARN - #c.j.p.PythonHelpersLocator - File pycharm.zip does not exist in helpers root
+2024-12-02 19:32:21,753 [  11196]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,754 [  11197]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,756 [  11199]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+Warning: Not allowed as a service: com.jetbrains.RoundedCornersManager
+	at com.jetbrains.JBR$RoundedCornersManager__Holder.<clinit>(JBR.java:514)
+	at com.jetbrains.JBR.isRoundedCornersManagerSupported(JBR.java:524)
+	at com.intellij.ui.WindowRoundedCornersManager.isAvailable(WindowRoundedCornersManager.java:36)
+	at com.intellij.ui.popup.AbstractPopup.show(AbstractPopup.java:1033)
+	at com.intellij.ui.popup.WizardPopup.show(WizardPopup.java:231)
+	at com.intellij.ui.popup.AbstractPopup.show(AbstractPopup.java:654)
+	at com.intellij.ui.popup.AbstractPopup.showUnderneathOf(AbstractPopup.java:587)
+	at com.intellij.ui.popup.AbstractPopup.showUnderneathOf(AbstractPopup.java:579)
+	at com.intellij.openapi.wm.impl.ExpandableComboAction.createCustomComponent$lambda$0(ExpandableComboAction.kt:43)
+	at com.intellij.ide.ui.laf.darcula.ui.ToolbarComboButtonUI$MyClickListener.onClick(ToolbarComboButtonUI.kt:193)
+	at com.intellij.ui.ClickListener$1.mouseReleased(ClickListener.java:63)
+	at java.desktop/java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:297)
+	at java.desktop/java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:297)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6665)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3394)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6430)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:5035)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4860)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4963)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4577)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4518)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2810)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4860)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:783)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:728)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:722)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:755)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:753)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:752)
+	at com.intellij.ide.IdeEventQueue.defaultDispatchEvent(IdeEventQueue.kt:696)
+	at com.intellij.ide.IdeEventQueue.dispatchMouseEvent(IdeEventQueue.kt:635)
+	at com.intellij.ide.IdeEventQueue._dispatchEvent$lambda$14(IdeEventQueue.kt:581)
+	at com.intellij.openapi.application.impl.AnyThreadWriteThreadingSupport.runWriteIntentReadAction(AnyThreadWriteThreadingSupport.kt:84)
+	at com.intellij.ide.IdeEventQueue._dispatchEvent(IdeEventQueue.kt:581)
+	at com.intellij.ide.IdeEventQueue.access$_dispatchEvent(IdeEventQueue.kt:73)
+	at com.intellij.ide.IdeEventQueue$dispatchEvent$processEventRunnable$1$1$1$1.compute(IdeEventQueue.kt:357)
+	at com.intellij.ide.IdeEventQueue$dispatchEvent$processEventRunnable$1$1$1$1.compute(IdeEventQueue.kt:356)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.computePrioritized(CoreProgressManager.java:843)
+	at com.intellij.ide.IdeEventQueue$dispatchEvent$processEventRunnable$1$1$1.invoke(IdeEventQueue.kt:356)
+	at com.intellij.ide.IdeEventQueue$dispatchEvent$processEventRunnable$1$1$1.invoke(IdeEventQueue.kt:351)
+	at com.intellij.ide.IdeEventQueueKt$performActivity$runnableWithWIL$1.invoke$lambda$0(IdeEventQueue.kt:1035)
+	at com.intellij.openapi.application.WriteIntentReadAction.lambda$run$0(WriteIntentReadAction.java:24)
+	at com.intellij.openapi.application.impl.AnyThreadWriteThreadingSupport.runWriteIntentReadAction(AnyThreadWriteThreadingSupport.kt:84)
+	at com.intellij.openapi.application.impl.ApplicationImpl.runWriteIntentReadAction(ApplicationImpl.java:910)
+	at com.intellij.openapi.application.WriteIntentReadAction.compute(WriteIntentReadAction.java:55)
+	at com.intellij.openapi.application.WriteIntentReadAction.run(WriteIntentReadAction.java:23)
+	at com.intellij.ide.IdeEventQueueKt$performActivity$runnableWithWIL$1.invoke(IdeEventQueue.kt:1035)
+	at com.intellij.ide.IdeEventQueueKt$performActivity$runnableWithWIL$1.invoke(IdeEventQueue.kt:1035)
+	at com.intellij.ide.IdeEventQueueKt.performActivity$lambda$1(IdeEventQueue.kt:1036)
+	at com.intellij.openapi.application.TransactionGuardImpl.performActivity(TransactionGuardImpl.java:114)
+	at com.intellij.ide.IdeEventQueueKt.performActivity(IdeEventQueue.kt:1036)
+	at com.intellij.ide.IdeEventQueue.dispatchEvent$lambda$10(IdeEventQueue.kt:351)
+	at com.intellij.ide.IdeEventQueue.dispatchEvent(IdeEventQueue.kt:397)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:207)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:128)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:117)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:105)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:92)
+2024-12-02 19:32:21,893 [  11336]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:21,908 [  11351]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:22,195 [  11638]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:22,291 [  11734]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:24,078 [  13521]   WARN - #c.i.u.x.Binding - No accessors for org.jetbrains.security.package.Package. This means that state class cannot be serialized properly. Please see https://jb.gg/ij-psoc
+2024-12-02 19:32:33,626 [  23069]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:38,652 [  28095]   WARN - #c.i.e.t.TargetBasedSdks - SDK target configuration data is absent
+2024-12-02 19:32:38,661 [  28104]   WARN - #c.i.s.ComponentManagerImpl - `preload=NOT_HEADLESS` must be used only for core services (service=com.jetbrains.rdserver.toolWindow.BackendServerToolWindowManager, plugin=com.jetbrains.codeWithMe)
+2024-12-02 19:32:38,661 [  28104]   WARN - #c.i.s.ComponentManagerImpl - `preload=TRUE` must be used only for core services (service=com.intellij.cwm.plugin.users.BackendUserManager, plugin=com.jetbrains.codeWithMe)
+2024-12-02 19:32:38,661 [  28104]   WARN - #c.i.s.ComponentManagerImpl - `preload=TRUE` must be used only for core services (service=com.intellij.cwm.plugin.ports.CwmPortForwardingToolWindowManager, plugin=com.jetbrains.codeWithMe)
+2024-12-02 19:32:38,661 [  28104]   WARN - #c.i.s.ComponentManagerImpl - `preload=TRUE` must be used only for core services (service=com.intellij.cwm.plugin.users.BackendCWMUserFocusHost, plugin=com.jetbrains.codeWithMe)
+2024-12-02 19:32:38,661 [  28104]   WARN - #c.i.s.ComponentManagerImpl - `preload=TRUE` must be used only for core services (service=com.intellij.cwm.plugin.following.FollowMeManagerService, plugin=com.jetbrains.codeWithMe)
+2024-12-02 19:32:38,661 [  28104]   WARN - #c.i.s.ComponentManagerImpl - `preload=TRUE` must be used only for core services (service=com.intellij.cwm.plugin.following.BackendProjectViewSync, plugin=com.jetbrains.codeWithMe)
+2024-12-02 19:32:38,661 [  28104]   WARN - #c.i.s.ComponentManagerImpl - `preload=TRUE` must be used only for core services (service=com.intellij.cwm.plugin.following.BackendFollowMeEditorsHost, plugin=com.jetbrains.codeWithMe)
+2024-12-02 19:32:38,661 [  28104]   WARN - #c.i.s.ComponentManagerImpl - `preload=TRUE` must be used only for core services (service=com.intellij.cwm.plugin.following.BackendFollowMeDebuggerHost, plugin=com.jetbrains.codeWithMe)
+2024-12-02 19:32:38,662 [  28105]   WARN - #c.i.s.ComponentManagerImpl - `preload=TRUE` must be used only for core services (service=com.intellij.cwm.plugin.following.FollowMeLookupSynchronizer, plugin=com.jetbrains.codeWithMe)
+2024-12-02 19:32:38,936 [  28379]   WARN - #c.i.e.t.TargetBasedSdks - SDK target configuration data is absent
+2024-12-02 19:32:39,245 [  28688]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:39,270 [  28713]   WARN - #c.i.e.t.TargetBasedSdks - SDK target configuration data is absent
+2024-12-02 19:32:39,277 [  28720]   WARN - #c.i.e.t.TargetBasedSdks - SDK target configuration data is absent
+2024-12-02 19:32:39,282 [  28725]   WARN - #c.i.e.t.TargetBasedSdks - SDK target configuration data is absent
+2024-12-02 19:32:39,308 [  28751]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:39,309 [  28752]   WARN - #c.i.e.t.TargetBasedSdks - SDK target configuration data is absent
+2024-12-02 19:32:39,312 [  28755]   WARN - #c.i.e.t.TargetBasedSdks - SDK target configuration data is absent
+2024-12-02 19:32:39,319 [  28762]   WARN - #c.i.e.t.TargetBasedSdks - SDK target configuration data is absent
+2024-12-02 19:32:39,390 [  28833]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:39,393 [  28836]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:40,293 [  29736]   WARN - #c.i.o.v.ExternallyAddedFilesProcessorImpl - Cannot find project config directory for non-default and non-directory based project signapp_web
+2024-12-02 19:32:40,348 [  29791]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:40,598 [  30041]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:43,887 [  33330]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:43,918 [  33361]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:43,929 [  33372]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:44,205 [  33648]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:32:44,445 [  33888]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+Error: Failed to open Wayland display, fallback to X11. WAYLAND_DISPLAY='wayland-0' DISPLAY=':0'
+2024-12-02 19:33:03,397 [  52840]   WARN - #c.i.o.v.ExternallyAddedFilesProcessorImpl - Cannot find project config directory for non-default and non-directory based project signapp_web
+2024-12-02 19:33:11,471 [  60914]   WARN - #c.i.u.x.Binding - No accessors for com.intellij.toolWindow.ToolWindowLayoutStorageManagerState. This means that state class cannot be serialized properly. Please see https://jb.gg/ij-psoc
+2024-12-02 19:33:43,627 [  93070]   WARN - #c.i.u.x.Binding - No accessors for com.intellij.openapi.projectRoots.Sdk. This means that state class cannot be serialized properly. Please see https://jb.gg/ij-psoc
+2024-12-02 19:33:44,272 [  93715]   WARN - #c.i.i.u.UIThemeBean - Unknown field: CombinedDiff
+2024-12-02 19:33:44,272 [  93715]   WARN - #c.i.i.u.UIThemeBean - Unknown field: BlockBorder
+2024-12-02 19:33:54,106 [ 103549]   WARN - #c.i.o.v.ExternallyAddedFilesProcessorImpl - Cannot find project config directory for non-default and non-directory based project signapp_web
+2024-12-02 19:33:54,416 [ 103859]   WARN - #c.i.o.v.ExternallyAddedFilesProcessorImpl - Cannot find project config directory for non-default and non-directory based project signapp_web
+2024-12-02 19:37:26,012 [ 315455]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:37:26,013 [ 315456]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:37:26,013 [ 315456]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:37:26,013 [ 315456]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:37:39,558 [ 329001]   WARN - org.apache.http.client.protocol.ResponseProcessCookies - Invalid cookie header: "Set-Cookie: _octo=GH1.1.183624628.1733157459; Path=/; Domain=github.com; Expires=Tue, 02 Dec 2025 16:37:39 GMT; Secure; SameSite=Lax". Invalid 'expires' attribute: Tue, 02 Dec 2025 16:37:39 GMT
+2024-12-02 19:37:39,558 [ 329001]   WARN - org.apache.http.client.protocol.ResponseProcessCookies - Invalid cookie header: "Set-Cookie: logged_in=no; Path=/; Domain=github.com; Expires=Tue, 02 Dec 2025 16:37:39 GMT; HttpOnly; Secure; SameSite=Lax". Invalid 'expires' attribute: Tue, 02 Dec 2025 16:37:39 GMT
+2024-12-02 19:41:47,209 [ 576652]   WARN - #c.i.e.p.BaseOSProcessHandler - Process hasn't generated any output for a long time.
+If it's a long-running mostly idle daemon process, consider overriding OSProcessHandler#readerOptions with 'BaseOutputReader.Options.forMostlySilentProcess()' to reduce CPU usage.
+Command line: /home/roman/PycharmProjects/signapp_web/venv/bin/python /home/roman/PycharmProjects/signapp_web/backend/main.py 
+java.lang.Throwable: Process creation:
+	at com.intellij.execution.process.BaseOSProcessHandler.<init>(BaseOSProcessHandler.java:32)
+	at com.intellij.execution.process.OSProcessHandler.<init>(OSProcessHandler.java:77)
+	at com.intellij.execution.process.KillableProcessHandler.<init>(KillableProcessHandler.java:77)
+	at com.intellij.execution.process.KillableProcessHandler.<init>(KillableProcessHandler.java:70)
+	at com.jetbrains.python.run.PythonProcessHandler.<init>(PythonProcessHandler.java:27)
+	at com.jetbrains.python.run.PythonCommandLineState.createProcessHandler(PythonCommandLineState.java:490)
+	at com.jetbrains.python.run.PythonCommandLineState.createPtyAwaredProcessHandler(PythonCommandLineState.java:473)
+	at com.jetbrains.python.run.PythonCommandLineState.doStartProcess(PythonCommandLineState.java:415)
+	at com.jetbrains.python.run.PythonCommandLineState.startProcess(PythonCommandLineState.java:347)
+	at com.jetbrains.python.run.PythonCommandLineState.execute(PythonCommandLineState.java:234)
+	at com.jetbrains.python.run.PythonScriptCommandLineState.execute(PythonScriptCommandLineState.java:147)
+	at com.jetbrains.python.run.PythonCommandLineState.execute(PythonCommandLineState.java:181)
+	at com.jetbrains.python.run.PythonRunner.lambda$execute$2(PythonRunner.java:68)
+	at com.intellij.util.concurrency.ContextRunnable.run(ContextRunnable.java:27)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.util.concurrent.Executors$PrivilegedThreadFactory$1$1.run(Executors.java:735)
+	at java.base/java.util.concurrent.Executors$PrivilegedThreadFactory$1$1.run(Executors.java:732)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.util.concurrent.Executors$PrivilegedThreadFactory$1.run(Executors.java:732)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-12-02 19:42:02,383 [ 591826]   WARN - #c.i.o.a.e.ActionUtil - Can not find action by id CompileDirty
+2024-12-02 19:44:20,482 [ 729925]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:44:20,483 [ 729926]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:44:20,484 [ 729927]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:44:20,484 [ 729927]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:48:49,649 [ 999092]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:49:04,669 [1014112]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:49:04,669 [1014112]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:49:04,669 [1014112]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:49:04,670 [1014113]   WARN - #c.j.p.PythonHelpersLocator - Helpers pro root does not exist /usr/local/bin/pycharm-2024.2.4/plugins/python-ce/helpers-pro
+2024-12-02 19:51:55,463 [1184906]   WARN - #c.i.o.v.i.l.NativeFileWatcherImpl - Watcher terminated with exit code 130
