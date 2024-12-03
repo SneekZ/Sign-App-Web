@@ -125,13 +125,4 @@ class SignParser:
     @staticmethod
     def check_is_error(error_code):
         return error_code != "0x00000000"
-
-if __name__ == "__main__":
-    with open("signs.txt", 'r') as file:
-        text = file.read()
-    
-    parser = SignParser()
-    print(parser.parse(text))
-    print(*parser.get_signs(), sep="\n")
-    # print(*parser.get_doubles(), sep="\n")
     

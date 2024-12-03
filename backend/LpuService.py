@@ -1,29 +1,35 @@
 from pathlib import Path
 import json
+from Database import Database
 
 
 class LpuService:
     def __init__(self):
-        self._default_folder_path = "lpu_data/"
-        self._lpu_data_folder = Path(self._default_folder_path)
+        self._db = Database()
 
-    def get_names(self):
-        data = []
-        for filepath in self._lpu_data_folder.iterdir():
-            if filepath.is_file():
-                with open(filepath, 'r') as file:
-                    lpu_data = json.load(file)
-                    host, name = lpu_data["host"], lpu_data["name"]
-                    data.append({host: name})
-        return data
+    def get_data(self):
+        query = "select id, name from lpudata"
+        try:
+            data = self._db.run(query)
+            if isinstance(data, list):
+                return data, True
+            else:
+                return str(data), False
+        except Exception as e:
+            return str(e), False
 
-    def get_lpu_data(self, host):
-        data = []
-        for filepath in self._lpu_data_folder.iterdir():
-            if filepath.is_file():
-                with open(filepath, 'r') as file:
-                    lpu_data = json.load(file)
-                    if lpu_data["host"] == host:
-                        break
-        return data
+    def get_lpu_data(self, id):
+        query = f"select * from lpudata where id = {id}"
+        try:
+            data = self._db.run(query)
+            if isinstance(data, list):
+                if len(data) == 1:
+                    return data[0], True
+                elif len(data) == 0:
+                    return "По данному id не найдено ЛПУ", False
+            else:
+                return str(data), False
+        except Exception as e:
+            return str(e), False
+
 
