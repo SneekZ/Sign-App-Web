@@ -22,10 +22,8 @@ def get_lpu_list():
 @app.get("/signs/{id}")
 def get_lpu_data(id: int):
     service = LpuService()
-    conn_data, ok = service.get_lpu_data(id)
+    data, ok = service.get_lpu_data(id)
     if ok:
-        titles = ["id", "name", "host", "port", "user", "password", "dbhost", "dbport", "dbuser", "dbpassword"]
-        data = dict([(titles[i], conn_data[i]) for i in range(1, len(titles))])
         ssh = SshConnection(data)
         try:
             error_msg = ssh.connect()
@@ -63,7 +61,7 @@ def get_lpu_data(id: int):
                 "error_msg": "Exception: " + str(e)
             }
     return {
-        "error_msg": "service.get_lpu_data: " + conn_data
+        "error_msg": "service.get_lpu_data: " + data
     }
 
 
