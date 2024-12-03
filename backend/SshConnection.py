@@ -69,7 +69,7 @@ class SshConnection:
     def _exec_command(self, command):
         if self._connected:
             stdin, stdout, stderr = self._client.exec_command(command)
-            logging.info(f"Была выполнена команда {stdin.read().decode("utf-8")}")
+            logging.info(f"Была выполнена команда {stdin.read().decode('utf-8')}")
 
             out = stdout.read().decode("utf-8").strip()
             err = stderr.read().decode("utf-8").strip()
