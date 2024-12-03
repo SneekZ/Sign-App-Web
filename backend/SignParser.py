@@ -63,6 +63,8 @@ class SignParser:
                         sign["new"] = True
                     else:
                         sign["new"] = False
+                del sign["before"]
+                del sign["after"]
 
         if not self._signs:
             return "Произошла ошибка при парсинге подписей"
