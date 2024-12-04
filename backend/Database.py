@@ -31,7 +31,7 @@ if __name__ == "__main__":
     # query = "ALTER TABLE lpudata ADD COLUMN database VARCHAR(16)"
     # query = "PRAGMA table_info(lpudata);"
     # query = "DROP TABLE lpudata"
-    # query = "delete from lpudata where id = 41"
+    # query = "delete from lpudata where id = 24"
     db = Database()
     print(*db.run(query), sep="\n")
     db.commit()

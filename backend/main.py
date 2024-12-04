@@ -84,7 +84,8 @@ def check_sign(id: int, snils):
             }
         return {
             "error_msg": None,
-            "password": answer
+            "password": answer[0],
+            "snils": answer[1]
         }
     else:
         return {

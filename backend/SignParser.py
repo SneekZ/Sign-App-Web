@@ -4,7 +4,7 @@ from datetime import datetime
 
 class SignParser:
     def __init__(self):
-        self._RE_ERROR_CODE = re.compile(r"(?<=\[ErrorCode:\s)\dx\d{8}(?=\])")
+        self._RE_ERROR_CODE = re.compile(r"(?<=\[ErrorCode:\s)\dx\w{8}(?=\])")
         self._RE_SPLIT = re.compile(r"(?<=\d-{7}\n)(.*?)(?=\d-{7}\n|={9})", re.DOTALL)
 
         _RE_SNILS = re.compile(r"(?<=(SNILS|СНИЛС)=)\d+")
@@ -29,52 +29,45 @@ class SignParser:
         self._date_format = "%d/%m/%Y %H:%M:%S UTC"
     
     def parse(self, text):
-        try:
-            self._error_code = self.get_error_code(text=text)
-            self._is_error = self.check_is_error(self._error_code)
+        self._error_code = self.get_error_code(text=text)
+        self._is_error = self.check_is_error(self._error_code)
 
-            if self._is_error:
-                return f"Получена ошибка: {self._error_code}"
+        if self._is_error:
+            return f"Получена ошибка: {self._error_code}"
 
-            self._signs_unparsed = re.findall(self._RE_SPLIT, text)
-            if not self._signs_unparsed:
-                return "Не найдено ни одной подписи"
+        self._signs_unparsed = re.findall(self._RE_SPLIT, text)
+        if not self._signs_unparsed:
+            return "Не найдено ни одной подписи"
 
-            double_snils = {}
-            for sign_unparsed in self._signs_unparsed:
-                sign_parsed = self._parse_one_sign(sign_unparsed)
-                if sign_parsed:
-                    if sign_parsed["snils"] in double_snils:
-                        double_snils[sign_parsed["snils"]] += 1
-                    else:
-                        double_snils[sign_parsed["snils"]] = 1
-                    self._signs.append(sign_parsed)
-
-            for sign in self._signs:
-                if double_snils[sign["snils"]] > 1:
-                    sign["double"] = True
+        double_snils = {}
+        for sign_unparsed in self._signs_unparsed:
+            sign_parsed = self._parse_one_sign(sign_unparsed)
+            if sign_parsed:
+                if sign_parsed["snils"] in double_snils:
+                    double_snils[sign_parsed["snils"]] += 1
                 else:
-                    sign["double"] = False
+                    double_snils[sign_parsed["snils"]] = 1
+                self._signs.append(sign_parsed)
 
-            for snils, _ in list(filter(lambda x: x[0] if x[1] > 1 else None, double_snils.items())):
-                same_signs_list = list(sorted(self.get_signs(key=snils), key=lambda x: x["before"]))
-                for sign in self._signs:
-                    if sign["snils"] == snils:
-                        if sign == same_signs_list[-1]:
-                            sign["new"] = True
-                        else:
-                            sign["new"] = False
-                    if "before" in sign:
-                        del sign["before"]
-                    if "after" in sign:
-                        del sign["after"]
+        for sign in self._signs:
+            if double_snils[sign["snils"]] > 1:
+                sign["double"] = True
+            else:
+                sign["double"] = False
 
-            if not self._signs:
-                return "Произошла ошибка при парсинге подписей"
+        for snils, _ in list(filter(lambda x: x[0] if x[1] > 1 else None, double_snils.items())):
+            same_signs_list = list(sorted(self.get_signs(key=snils), key=lambda x: x["before"]))
+            for sign in self._signs:
+                if sign["snils"] == snils:
+                    if sign == same_signs_list[-1]:
+                        sign["new"] = True
+                    else:
+                        sign["new"] = False
 
-            return
-        except Exception as e:
-            print(e)
+        if not self._signs:
+            return "Произошла ошибка при парсинге подписей"
+
+        return
 
     def _parse_one_sign(self, text):
         sign = {}

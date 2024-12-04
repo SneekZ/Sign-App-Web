@@ -74,14 +74,17 @@ class SshConnection:
             out = stdout.read().decode("utf-8", errors="replace").strip()
             err = stderr.read().decode("utf-8", errors="replace").strip()
 
+            # out = stdout.read().decode("cp1251", errors="replace").strip()
+            # err = stderr.read().decode("cp1251", errors="replace").strip()
+
             # print(f"{command}: out: {out}, err: {err}")
 
             if err:
                 return err, False
             
             if out:
-                parser = SignParser()
-                error_code = parser.get_error_code(text=out)
+                self.parser = SignParser()
+                error_code = self.parser.get_error_code(text=out)
                 if error_code == "0x00000000":
                     return out, True
                 else:
@@ -128,20 +131,20 @@ class SshConnection:
             # logging.info(f"Выполнена команда {command}")
 
             if ok:
-                return password, True
+                return [password, snils], True
             
             errors.append(out)
         
         if errors:
-            if len(errors) > 1:
-                msg = errors[-2]
-                # logging.error(msg)
-                return msg, False
-            
-            else:
-                msg = errors[0]
-                # logging.error(msg)
-                return msg, False
+            from modules.error_codes import get_error
+            for i in range(len(errors)):
+                error_code = self.parser.get_error_code(text=errors[i])
+                if error_code != "0x8010006b":
+                    error = get_error(error_code)
+                    return error, False
+            error_code = self.parser.get_error_code(text=errors[-1])
+            error = get_error(error_code)
+            return error, False
             
         else:
             msg = "Не найдено ни одного пароля"
