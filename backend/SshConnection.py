@@ -35,6 +35,8 @@ class SshConnection:
 
         self._connected = False
 
+        self.parser = SignParser()
+
     def connect(self):
         try:
             self._client.connect(
@@ -81,9 +83,8 @@ class SshConnection:
 
             if err:
                 return err, False
-            
+
             if out:
-                self.parser = SignParser()
                 error_code = self.parser.get_error_code(text=out)
                 if error_code == "0x00000000":
                     return out, True
@@ -125,15 +126,20 @@ class SshConnection:
 
         errors = []
 
-        for password in passwords:
-            command = f'/opt/cprocsp/bin/amd64/cryptcp -signf -cert -nochain -dn="{snils}" /home/converter/228.pdf -pin "{password}"'
-            out, ok = self._exec_command(command)
-            # logging.info(f"Выполнена команда {command}")
+        if passwords:
+            for password in passwords:
+                command = f'/opt/cprocsp/bin/amd64/cryptcp -signf -cert -nochain -dn="{snils}" /home/converter/228.pdf -pin "{password}"'
+                out, ok = self._exec_command(command)
+                # logging.info(f"Выполнена команда {command}")
 
-            if ok:
-                return [password, snils], True
-            
-            errors.append(out)
+                if ok:
+                    return (password, snils), True
+
+                errors.append(out)
+        else:
+            msg = "Не найдено ни одного пароля"
+            # logging.error(msg)
+            return msg, False
         
         if errors:
             from modules.error_codes import get_error
@@ -145,9 +151,8 @@ class SshConnection:
             error_code = self.parser.get_error_code(text=errors[-1])
             error = get_error(error_code)
             return error, False
-            
         else:
-            msg = "Не найдено ни одного пароля"
+            msg = "Не было запущено попыток подписания, проблема неизвестна"
             # logging.error(msg)
             return msg, False
 

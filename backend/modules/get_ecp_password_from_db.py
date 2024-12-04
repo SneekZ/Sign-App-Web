@@ -20,10 +20,10 @@ def get_connection(data):
         try:
             connection = mariadb.connect(host=host, port=int(port), user=user, password=password, database=database)
         except Exception as e:
-            return str(e), False
+            return "Ошибка подключения к базе данных " + str(e), False
         return connection, True
     else:
-        msg = "Нет необходимых полей в файле ЛПУ"
+        msg = "Нет необходимых полей в данных подключения ЛПУ"
         return msg, False
 
 
@@ -34,7 +34,7 @@ def get_passwords_by_snils(connection_data, snils):
 
     cursor = connection.cursor()
 
-    query = f"select ecp_password from Person where SNILS = {snils} and ecp_password is not null order by createDatetime"
+    query = f"select ecp_password from Person where SNILS = {snils} and ecp_password is not null and retired = 0 and retireDate is null order by createDatetime"
     query_global = "select value from GlobalPreferences where code = 1050"
 
     cursor.execute(query)
