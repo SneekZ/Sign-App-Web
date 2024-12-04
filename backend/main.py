@@ -57,7 +57,6 @@ def get_lpu_signs(id: int):
                 "signs": signs
             }
         except Exception as e:
-            print(e)
             return {
                 "error_msg": "Exception: " + str(e)
             }
