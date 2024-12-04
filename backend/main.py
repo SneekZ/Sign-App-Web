@@ -20,7 +20,7 @@ def get_lpu_list():
 
 
 @app.get("/signs/{id}")
-def get_lpu_data(id: int):
+def get_lpu_signs(id: int):
     service = LpuService()
     data, ok = service.get_lpu_data(id)
     if ok:

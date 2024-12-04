@@ -8,7 +8,7 @@ class LpuService:
         self._db = Database()
 
     def get_data(self):
-        query = "select id, name from lpudata"
+        query = "select * from lpudata"
         try:
             data = self._db.run(query)
             if isinstance(data, list):
