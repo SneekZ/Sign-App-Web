@@ -39,8 +39,8 @@ def get_lpu_data(id: int):
                     "error_msg": "ssh.get_signs: " + out
                 }
             parser = SignParser()
-            error_code = parser.get_error_code(out)
-            # print("parser.check_is_error: ",  out)
+            error_code = parser.get_error_code(text=out)
+            # print("parser.check_is_error: ", error_code)
             if parser.check_is_error(error_code):
                 return {
                     "error_msg": "parser.check_is_error: " + out
@@ -57,12 +57,39 @@ def get_lpu_data(id: int):
                 "signs": signs
             }
         except Exception as e:
+            print(e)
             return {
                 "error_msg": "Exception: " + str(e)
             }
     return {
         "error_msg": "service.get_lpu_data: " + data
     }
+
+
+@app.get("/signs/{id}/check/{snils}")
+def check_sign(id: int, snils):
+    service = LpuService()
+    conn_data, ok = service.get_lpu_data(id)
+    if ok:
+        ssh = SshConnection(conn_data)
+        connection_error = ssh.connect()
+        if connection_error:
+            return {
+                "error_msg": "ssh.connect: " + connection_error
+            }
+        answer, ok = ssh.check_sign(snils)
+        if not ok:
+            return {
+                "error_msg": "ssh.check_sign: " + answer
+            }
+        return {
+            "error_msg": None,
+            "password": answer
+        }
+    else:
+        return {
+            "error_msg": "service.get_lpu_data: " + conn_data
+        }
 
 
 if __name__ == "__main__":

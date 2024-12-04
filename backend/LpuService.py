@@ -20,7 +20,7 @@ class LpuService:
 
     def get_lpu_data(self, id):
         query = f"select * from lpudata where id = {id}"
-        titles = ["id", "name", "host", "port", "user", "password", "dbhost", "dbport", "dbuser", "dbpassword"]
+        titles = ["id", "name", "host", "port", "user", "password", "dbhost", "dbport", "dbuser", "dbpassword", "database"]
         try:
             data = self._db.run(query)
             if isinstance(data, list):

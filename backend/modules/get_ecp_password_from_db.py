@@ -1,5 +1,6 @@
 import mariadb
 from modules.decrypt_password import decrypt_password
+# from decrypt_password import decrypt_password
 
 
 def get_connection(data):
@@ -56,15 +57,13 @@ def get_passwords_by_snils(connection_data, snils):
         except Exception:
             pass
     if passwords:
+        connection.close()
         return passwords, True
     else:
+        connection.close()
         return "Не найден ни один пароль", False
 
 
 if __name__ == "__main__":
     data = {"host": "dp68vm", "dbport": 3306, "dbuser": "dbuser", "dbpassword": "dbpassword", "database": "s11"}
-    connection, is_error = get_connection(data)
-    if is_error:
-        print(connection)
-    print(get_passwords_by_snils(connection, "17394991427"))
-    connection.close()
+    print(get_passwords_by_snils(data, "17394991427"))

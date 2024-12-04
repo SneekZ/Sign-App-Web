@@ -3,7 +3,8 @@ from paramiko.ssh_exception import AuthenticationException, SSHException, NoVali
 import logging
 from datetime import datetime
 
-from modules import get_ecp_password_from_db
+from modules.get_ecp_password_from_db import get_passwords_by_snils
+from SignParser import SignParser
 
 
 class SshConnection:
@@ -26,9 +27,8 @@ class SshConnection:
             self._user = data["user"]
             self._password = data["password"]
         except KeyError as e:
-            # msg = f"Ошибка инициализации: {e}"
+            print(f"Ошибка инициализации: {e}")
             # logging.error(msg)
-            return msg
 
         self._client = paramiko.SSHClient()
         self._client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -38,10 +38,10 @@ class SshConnection:
     def connect(self):
         try:
             self._client.connect(
-                hostname = self._host,
-                port = self._port,
-                username = self._user,
-                password = self._password
+                hostname=self._host,
+                port=self._port,
+                username=self._user,
+                password=self._password
             )
             self._connected = True
             # logging.info(f"Подключено успешно к {self._name}")
@@ -66,19 +66,29 @@ class SshConnection:
             # logging.error(msg)
             return msg
         
-    def _exec_command(self, command):
+    def _exec_command(self, command, ans=True):
         if self._connected:
             stdin, stdout, stderr = self._client.exec_command(command)
             # logging.info(f"Была выполнена команда {stdin.read().decode('utf-8')}")
 
-            out = stdout.read().decode("utf-8").strip()
-            err = stderr.read().decode("utf-8").strip()
+            out = stdout.read().decode("utf-8", errors="replace").strip()
+            err = stderr.read().decode("utf-8", errors="replace").strip()
+
+            # print(f"{command}: out: {out}, err: {err}")
 
             if err:
                 return err, False
             
             if out:
-                return out, True
+                parser = SignParser()
+                error_code = parser.get_error_code(text=out)
+                if error_code == "0x00000000":
+                    return out, True
+                else:
+                    return out, False
+
+            if not ans:
+                return "Вроде выполнилась, хз вообще", True
             
         else:
             msg = "Клиент не был подключен"
@@ -90,26 +100,14 @@ class SshConnection:
         out, ok = self._exec_command(command)
         return out, ok
     
-    def check_sign(self, sign: dict):
+    def check_sign(self, snils):
         if not self._connected:
             msg = "Клиент не был подключен"
             # logging.error(msg)
             return msg, False
-        
-        if not isinstance(sign, dict):
-            msg =  "Подпись представлена в неверном формате"
-            # logging.error(msg)
-            return msg, False
-        
-        if not "snils" in sign:
-            msg = "В подписи нет снилса"
-            # logging.error(msg)
-            return msg, False
-        
-        snils = sign["snils"]
 
         command = "touch /home/converter/228.pdf"
-        out, ok = self._exec_command(command)
+        out, ok = self._exec_command(command, ans=False)
         # logging.info(f"Выполнена команда {command}")
         
         if not ok:
@@ -117,12 +115,15 @@ class SshConnection:
             # logging.error(msg)
             return msg, False
         
-        passwords = get_ecp_password_from_db(self._data)
+        passwords, ok = get_passwords_by_snils(self._data, snils)
+
+        if not ok:
+            return passwords, False
 
         errors = []
 
         for password in passwords:
-            command = f'/opt/cprocsp/bin/amd64/cryptcp -signf -cert -nochain -dn="{snils}" /home/converter/228.pdf -pin {password}'
+            command = f'/opt/cprocsp/bin/amd64/cryptcp -signf -cert -nochain -dn="{snils}" /home/converter/228.pdf -pin "{password}"'
             out, ok = self._exec_command(command)
             # logging.info(f"Выполнена команда {command}")
 
@@ -146,6 +147,10 @@ class SshConnection:
             msg = "Не найдено ни одного пароля"
             # logging.error(msg)
             return msg, False
-            
 
 
+if __name__ == "__main__":
+    data = {"name": "Гомоамогаома", "host": "dp68vm", "port": 22, "user": "root", "password": "shedF34A", "dbport": 3306, "dbuser": "dbuser", "dbpassword": "dbpassword", "database": "s11"}
+    ssh = SshConnection(data)
+    print(ssh.connect())
+    print(ssh.check_sign(17060307733))

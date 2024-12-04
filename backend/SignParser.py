@@ -29,47 +29,52 @@ class SignParser:
         self._date_format = "%d/%m/%Y %H:%M:%S UTC"
     
     def parse(self, text):
-        self._error_code = self.get_error_code(text)
-        self._is_error = self.check_is_error(self._error_code)
+        try:
+            self._error_code = self.get_error_code(text=text)
+            self._is_error = self.check_is_error(self._error_code)
 
-        if self._is_error:
-            return f"Получена ошибка: {self._error_code}"
-        
-        self._signs_unparsed = re.findall(self._RE_SPLIT, text)
-        if not self._signs_unparsed:
-            return "Не найдено ни одной подписи"
-        
-        double_snils = {}
-        for sign_unparsed in self._signs_unparsed:
-            sign_parsed = self._parse_one_sign(sign_unparsed)
-            if sign_parsed:
-                if sign_parsed["snils"] in double_snils:
-                    double_snils[sign_parsed["snils"]] += 1
-                else:
-                    double_snils[sign_parsed["snils"]] = 1
-                self._signs.append(sign_parsed)
-        
-        for sign in self._signs:
-            if double_snils[sign["snils"]] > 1:
-                sign["double"] = True
-            else:
-                sign["double"] = False
-        
-        for snils, _ in list(filter(lambda x: x[0] if x[1] > 1 else None, double_snils.items())):
-            same_signs_list = list(sorted(self.get_signs(key=snils), key=lambda x: x["before"]))
-            for sign in self._signs:
-                if sign["snils"] == snils:
-                    if sign == same_signs_list[-1]:
-                        sign["new"] = True
+            if self._is_error:
+                return f"Получена ошибка: {self._error_code}"
+
+            self._signs_unparsed = re.findall(self._RE_SPLIT, text)
+            if not self._signs_unparsed:
+                return "Не найдено ни одной подписи"
+
+            double_snils = {}
+            for sign_unparsed in self._signs_unparsed:
+                sign_parsed = self._parse_one_sign(sign_unparsed)
+                if sign_parsed:
+                    if sign_parsed["snils"] in double_snils:
+                        double_snils[sign_parsed["snils"]] += 1
                     else:
-                        sign["new"] = False
-                del sign["before"]
-                del sign["after"]
+                        double_snils[sign_parsed["snils"]] = 1
+                    self._signs.append(sign_parsed)
 
-        if not self._signs:
-            return "Произошла ошибка при парсинге подписей"
-        
-        return
+            for sign in self._signs:
+                if double_snils[sign["snils"]] > 1:
+                    sign["double"] = True
+                else:
+                    sign["double"] = False
+
+            for snils, _ in list(filter(lambda x: x[0] if x[1] > 1 else None, double_snils.items())):
+                same_signs_list = list(sorted(self.get_signs(key=snils), key=lambda x: x["before"]))
+                for sign in self._signs:
+                    if sign["snils"] == snils:
+                        if sign == same_signs_list[-1]:
+                            sign["new"] = True
+                        else:
+                            sign["new"] = False
+                    if "before" in sign:
+                        del sign["before"]
+                    if "after" in sign:
+                        del sign["after"]
+
+            if not self._signs:
+                return "Произошла ошибка при парсинге подписей"
+
+            return
+        except Exception as e:
+            print(e)
 
     def _parse_one_sign(self, text):
         sign = {}
@@ -89,9 +94,14 @@ class SignParser:
                 if title in self._required_keys:
                     return None
                 
-        g = re.search(self._RE_G, text).group()
-        sn = re.search(self._RE_SN, text).group()
-        sign["name"] = sn + " " + g
+        g = re.search(self._RE_G, text)
+        sn = re.search(self._RE_SN, text)
+        if sn:
+            sn = sn.group()
+            sign["name"] = sn + " "
+        if g:
+            g = g.group()
+            sign["name"] += g
 
         return sign
     
