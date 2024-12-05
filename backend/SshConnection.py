@@ -3,7 +3,6 @@ from paramiko.ssh_exception import AuthenticationException, SSHException, NoVali
 import logging
 from datetime import datetime
 
-from modules.get_ecp_password_from_db import get_passwords_by_snils
 from SignParser import SignParser
 import mariadb
 from modules.decrypt_password import decrypt_password
