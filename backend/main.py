@@ -65,8 +65,8 @@ def get_lpu_signs(id: int):
     }
 
 
-@app.get("/signs/{id}/check/{snils}")
-def check_sign(id: int, snils):
+@app.get("/signs/{id}/check/{snils}/{casino}")
+def check_sign(id: int, snils, casino: bool):
     service = LpuService()
     conn_data, ok = service.get_lpu_data(id)
     if ok:
@@ -76,11 +76,17 @@ def check_sign(id: int, snils):
             return {
                 "error_msg": "ssh.connect: " + connection_error
             }
-        answer, ok = ssh.check_sign(snils)
+        answer, ok = ssh.check_sign(snils, casino=casino)
         if not ok:
-            return {
-                "error_msg": "ssh.check_sign: " + answer
-            }
+            if isinstance(answer, tuple):
+                return {
+                    "error_msg": "ssh.check_sign: " + answer[1],
+                    "password": answer[0]
+                }
+            else:
+                return {
+                    "error_msg": "ssh.check_sign: " + answer
+                }
         return {
             "error_msg": None,
             "password": answer[0],

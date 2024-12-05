@@ -7,14 +7,13 @@ from datetime import datetime
 from SignParser import SignParser
 import mariadb
 from modules.decrypt_password import decrypt_password
+from modules.passwords_finder import get_passwords_finder
 
 
 class SshConnection:
     def __init__(self, data):
         _current_datetime = datetime.now()
         _current_datetime = _current_datetime.strftime("%Y-%m-%d_%H-%M-%S")
-
-        print(_current_datetime)
 
         log_dir = "log/ssh/"
         os.makedirs(log_dir, exist_ok=True)
@@ -120,7 +119,7 @@ class SshConnection:
         out, ok = self._exec_command(command)
         return out, ok
 
-    def check_sign(self, snils):
+    def check_sign(self, snils, casino=False):
         if not self._connected:
             msg = "Клиент не был подключен"
             logging.error(msg)
@@ -140,37 +139,38 @@ class SshConnection:
         if not ok:
             return passwords, False
 
-        errors = []
+        if casino:
+            passwords += get_passwords_finder()
+            passwords = list(set(passwords))
+
+
+        from modules.error_codes import get_error
 
         if passwords:
             for password in passwords:
                 command = f'/opt/cprocsp/bin/amd64/cryptcp -signf -cert -nochain -dn "{snils}" /home/converter/228.pdf -pin "{password}"'
                 out, ok = self._exec_command(command)
-                logging.info(f"Выполнена команда {command}")
 
                 if ok:
                     return (password, snils), True
 
-                errors.append(out)
+                error_code = self.parser.get_error_code(text=out)
+
+                if error_code != "0x8010006b":
+                    return (password, get_error(error_code)), False
+
         else:
             msg = "Не найдено ни одного пароля"
             logging.error(msg)
             return msg, False
 
-        if errors:
-            from modules.error_codes import get_error
-            for i in range(len(errors)):
-                error_code = self.parser.get_error_code(text=errors[i])
-                if error_code != "0x8010006b":
-                    error = get_error(error_code)
-                    return error, False
-            error_code = self.parser.get_error_code(text=errors[-1])
-            error = get_error(error_code)
-            return error, False
+        if out:
+            error_code = self.parser.get_error_code(text=out)
+            msg = get_error(error_code)
         else:
             msg = "Не было запущено попыток подписания, проблема неизвестна"
             logging.error(msg)
-            return msg, False
+        return msg, False
 
     def _get_passwords_from_db(self, snils):
         connection, ok = self._get_db_connection()
