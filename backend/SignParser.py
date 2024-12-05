@@ -27,7 +27,7 @@ class SignParser:
         self._is_error = False
 
         self._date_format = "%d/%m/%Y %H:%M:%S UTC"
-    
+
     def parse(self, text):
         self._error_code = self.get_error_code(text=text)
         self._is_error = self.check_is_error(self._error_code)
@@ -93,7 +93,7 @@ class SignParser:
             else:
                 if title in self._required_keys:
                     return None
-                
+
         g = re.search(self._RE_G, text)
         sn = re.search(self._RE_SN, text)
         if sn:
@@ -104,7 +104,7 @@ class SignParser:
             sign["name"] += g
 
         return sign
-    
+
     def get_error_code(self, text=""):
         if not text:
             return self._error_code
@@ -130,11 +130,10 @@ class SignParser:
                             found_signs.append(sign)
                             continue
             return found_signs
-    
+
     def get_doubles(self):
         return list(sorted(filter(lambda x: x["double"], self._signs), key=lambda x: x["snils"]))
-                
+
     @staticmethod
     def check_is_error(error_code):
         return error_code != "0x00000000"
-    
