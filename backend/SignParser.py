@@ -49,7 +49,8 @@ class SignParser:
                     double_snils[sign_parsed["snils"]] = 1
                 self._signs.append(sign_parsed)
 
-        for sign in self._signs:
+        for id, sign in enumerate(self._signs):
+            sign["id"] = id + 1
             if double_snils[sign["snils"]] > 1:
                 sign["double"] = True
             else:
@@ -63,6 +64,12 @@ class SignParser:
                         sign["new"] = True
                     else:
                         sign["new"] = False
+
+        for sign in self._signs:
+            if "before" in sign:
+                del sign["before"]
+            if "after" in sign:
+                del sign["after"]
 
         if not self._signs:
             return "Произошла ошибка при парсинге подписей"
