@@ -1,4 +1,5 @@
-def get_passwords_finder(n=11):
+def get_passwords_finder():
+    n = 11
     passwords = []
     for i in range(1, n):
         if not passwords:
@@ -11,4 +12,4 @@ def get_passwords_finder(n=11):
 
 
 if __name__ == "__main__":
-    print(get_passwords_finder(11))
+    print(get_passwords_finder())
