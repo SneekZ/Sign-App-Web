@@ -92,6 +92,32 @@ def check_sign(id: int, snils):
         }
 
 
+@app.get("signs/{id}/delete/{thumbprint}")
+def delete_sign(id: int, thumbprint):
+    service = LpuService()
+    conn_data, ok = service.get_lpu_data(id)
+    if ok:
+        ssh = SshConnection(conn_data)
+        connection_error = ssh.connect()
+        if connection_error:
+            return {
+                "error_msg": "ssh.connect: " + connection_error
+            }
+        answer, ok = ssh.delete_sign(thumbprint)
+        if not ok:
+            return {
+                "error_msg": "ssh.delete_sign: " + answer
+            }
+        return {
+            "error_msg": None,
+            "answer": answer
+        }
+    else:
+        return {
+            "error_msg": "service.get_lpu_data: " + conn_data
+        }
+
+
 if __name__ == "__main__":
     uvicorn.run(
         "main:app",

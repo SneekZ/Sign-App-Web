@@ -207,6 +207,20 @@ class SshConnection:
             return "Ошибка подключения к базе данных: " + str(e), False
         return connection, True
 
+    def delete_sign(self, thumbprint: str):
+        if not self._connected:
+            msg = "Клиент не был подключен"
+            # logging.error(msg)
+            return msg, False
+
+        command = f"/opt/cprocsp/bin/amd64/certmgr -list -delete -thumbprint {thumbprint}"
+
+        out, ok = self._exec_command(command)
+        if ok:
+            return "Подпись удалена успешно", True
+        else:
+            return out, False
+
 
 if __name__ == "__main__":
     data = {"name": "Гомоамогаома", "host": "dp68vm", "port": 22, "user": "root", "password": "shedF34A",
