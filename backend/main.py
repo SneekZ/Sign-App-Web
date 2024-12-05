@@ -92,7 +92,7 @@ def check_sign(id: int, snils):
         }
 
 
-@app.get("signs/{id}/delete/{thumbprint}")
+@app.post("signs/{id}/delete/{thumbprint}")
 def delete_sign(id: int, thumbprint):
     service = LpuService()
     conn_data, ok = service.get_lpu_data(id)
