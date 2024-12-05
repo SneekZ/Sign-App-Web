@@ -1,6 +1,7 @@
 import paramiko
 from paramiko.ssh_exception import AuthenticationException, SSHException, NoValidConnectionsError
 import logging
+import os
 from datetime import datetime
 
 from SignParser import SignParser
@@ -13,11 +14,16 @@ class SshConnection:
         _current_datetime = datetime.now()
         _current_datetime = _current_datetime.strftime("%Y-%m-%d_%H-%M-%S")
 
-        # # logging.basicConfig(
-        #     filename=f"log/ssh/log_{_current_datetime}",
-        #     level=# logging.DEBUG,
-        #     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-        # )
+        print(_current_datetime)
+
+        log_dir = "log/ssh/"
+        os.makedirs(log_dir, exist_ok=True)
+
+        logging.basicConfig(
+            filename=f"log/ssh/log_{_current_datetime}.log",
+            level=logging.INFO,
+            format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        )
 
         self._data = data
 
@@ -33,8 +39,9 @@ class SshConnection:
             self._dbpassword = data["dbpassword"]
             self._database = data["database"]
         except KeyError as e:
-            print(f"Ошибка инициализации: {e}")
-            # logging.error(msg)
+            msg = f"Ошибка инициализации: {e}"
+            logging.error(msg)
+            print(msg)
 
         self._client = paramiko.SSHClient()
         self._client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -52,33 +59,33 @@ class SshConnection:
                 password=self._password
             )
             self._connected = True
-            # logging.info(f"Подключено успешно к {self._name}")
+            logging.info(f"Подключено успешно к {self._name}")
 
         except AuthenticationException as auth_error:
             msg = f"Ошибка аутентификации: {auth_error}"
-            # logging.error(msg)
+            logging.error(msg)
             return msg
 
         except NoValidConnectionsError as conn_error:
             msg = f"Не удается подключиться к серверу: {conn_error}"
-            # logging.error(msg)
+            logging.error(msg)
             return msg
 
         except SSHException as ssh_error:
             msg = f"Ошибка SSH: {ssh_error}"
-            # logging.error(msg)
+            logging.error(msg)
             return msg
 
         except Exception as e:
             msg = f"Произошла непредвиденная ошибка: {e}"
-            # logging.error(msg)
+            logging.error(msg)
             return msg
 
     def _exec_command(self, command, ans=True):
         if self._connected:
             try:
                 stdin, stdout, stderr = self._client.exec_command(command)
-                # logging.info(f"Была выполнена команда {stdin.read().decode('utf-8')}")
+                logging.info(f"Была выполнена команда {command}")
             except Exception as e:
                 return "Ошибка при выполнении команды: " + str(e), False
 
@@ -105,7 +112,7 @@ class SshConnection:
 
         else:
             msg = "Клиент не был подключен"
-            # logging.error(msg)
+            logging.error(msg)
             return msg, False
 
     def get_signs(self, key=""):
@@ -116,16 +123,16 @@ class SshConnection:
     def check_sign(self, snils):
         if not self._connected:
             msg = "Клиент не был подключен"
-            # logging.error(msg)
+            logging.error(msg)
             return msg, False
 
         command = "touch /home/converter/228.pdf"
         out, ok = self._exec_command(command, ans=False)
-        # logging.info(f"Выполнена команда {command}")
+        logging.info(f"Выполнена команда {command}")
 
         if not ok:
             msg = f"Ошибка при создании 228.pdf: {out}"
-            # logging.error(msg)
+            logging.error(msg)
             return msg, False
 
         passwords, ok = self._get_passwords_from_db(snils)
@@ -139,7 +146,7 @@ class SshConnection:
             for password in passwords:
                 command = f'/opt/cprocsp/bin/amd64/cryptcp -signf -cert -nochain -dn "{snils}" /home/converter/228.pdf -pin "{password}"'
                 out, ok = self._exec_command(command)
-                # logging.info(f"Выполнена команда {command}")
+                logging.info(f"Выполнена команда {command}")
 
                 if ok:
                     return (password, snils), True
@@ -147,7 +154,7 @@ class SshConnection:
                 errors.append(out)
         else:
             msg = "Не найдено ни одного пароля"
-            # logging.error(msg)
+            logging.error(msg)
             return msg, False
 
         if errors:
@@ -162,7 +169,7 @@ class SshConnection:
             return error, False
         else:
             msg = "Не было запущено попыток подписания, проблема неизвестна"
-            # logging.error(msg)
+            logging.error(msg)
             return msg, False
 
     def _get_passwords_from_db(self, snils):
@@ -210,7 +217,7 @@ class SshConnection:
     def delete_sign(self, thumbprint: str):
         if not self._connected:
             msg = "Клиент не был подключен"
-            # logging.error(msg)
+            logging.error(msg)
             return msg, False
 
         command = f"/opt/cprocsp/bin/amd64/certmgr -list -delete -thumbprint {thumbprint}"
