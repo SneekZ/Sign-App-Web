@@ -127,7 +127,6 @@ class SshConnection:
 
         command = "touch /home/converter/228.pdf"
         out, ok = self._exec_command(command, ans=False)
-        logging.info(f"Выполнена команда {command}")
 
         if not ok:
             msg = f"Ошибка при создании 228.pdf: {out}"
