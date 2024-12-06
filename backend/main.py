@@ -123,7 +123,6 @@ def check_signs_by_id(id: int, ids: str):
                 }
 
             snilses, ok = ssh.get_snils_by_db_ids(ids)
-            print(snilses)
             if not ok:
                 return {
                     "error_msg": snilses
