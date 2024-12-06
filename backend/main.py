@@ -3,6 +3,9 @@ from pyexpat.errors import messages
 
 import uvicorn
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import FileResponse
+import pandas as pd
+
 from LpuService import LpuService
 from SshConnection import SshConnection
 from SignParser import SignParser
@@ -96,6 +99,69 @@ def check_sign(id: int, snils, casino: bool):
         return {
             "error_msg": "service.get_lpu_data: " + conn_data
         }
+
+
+@app.get("/signs/{id}/check_by_ids/{ids}")
+def check_signs_by_id(id: int, ids: str):
+    result_data = {
+        "id": [],
+        "snils": [],
+        "result": [],
+        "password": []
+    }
+
+    service = LpuService()
+    data, ok = service.get_lpu_data(id)
+    if ok:
+        ssh = SshConnection(data)
+        try:
+            error_msg = ssh.connect()
+            # print("ssh.connect: ", error_msg)
+            if error_msg:
+                return {
+                    "error_msg": "ssh.connect: " + error_msg
+                }
+
+            snilses, ok = ssh.get_snils_by_db_ids(ids)
+            print(snilses)
+            if not ok:
+                return {
+                    "error_msg": snilses
+                }
+
+            snilses, ids = snilses
+
+            for snils, db_id in zip(snilses, ids):
+                result_data["id"].append(db_id)
+                result_data["snils"].append(snils)
+                answer, ok = ssh.check_sign(snils, casino=False)
+                if ok:
+                    result_data["result"].append("OK")
+                    result_data["password"].append(answer[0])
+                else:
+                    if isinstance(answer, tuple):
+                        result_data["result"].append(answer[1])
+                        result_data["password"].append(answer[0])
+                    else:
+                        result_data["result"].append(answer)
+                        result_data["password"].append(None)
+
+            df = pd.DataFrame(result_data)
+
+            file_path = "output.xlsx"
+
+            df.to_excel(file_path, index=False)
+            return FileResponse(file_path,
+                                media_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                                filename="output.xlsx")
+
+        except Exception as e:
+            return {
+                "error_msg": "Exception: " + str(e)
+            }
+    return {
+        "error_msg": "service.get_lpu_data: " + data
+    }
 
 
 @app.post("signs/{id}/delete/{thumbprint}")

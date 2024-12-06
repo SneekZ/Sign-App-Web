@@ -3,6 +3,7 @@ from paramiko.ssh_exception import AuthenticationException, SSHException, NoVali
 import logging
 import os
 from datetime import datetime
+import re
 
 from SignParser import SignParser
 import mariadb
@@ -227,10 +228,30 @@ class SshConnection:
         else:
             return out, False
 
+    def get_snils_by_db_ids(self, ids):
+        regexp = re.compile(r"\d+")
+        ids = re.findall(regexp, ids)
+
+        connection, ok = self._get_db_connection()
+        if not ok:
+            return connection, False
+        cursor = connection.cursor()
+
+        query = f"select snils from Person where id in ({', '.join(ids)})"
+
+        try:
+            cursor.execute(query)
+            snilses = [''.join(re.findall(regexp, snils[0])) for snils in cursor.fetchall() if snils]
+        except Exception as e:
+            return f"Ошибка при получении списка снилсов: {str(e)}", False
+
+        if snilses:
+            return (snilses, ids), True
+        return "Не найдено ни одного снилса или возникла неотслеженная ошибка", False
 
 if __name__ == "__main__":
     data = {"name": "Гомоамогаома", "host": "dp68vm", "port": 22, "user": "root", "password": "shedF34A",
             "dbport": 3306, "dbuser": "dbuser", "dbpassword": "dbpassword", "database": "s11"}
     ssh = SshConnection(data)
     print(ssh.connect())
-    print(ssh._get_passwords_from_db("20199336460"))
+    print(ssh.get_snils_by_db_ids("2191 2200, 2342, 1562\n2420\n1674, 1850, 1538"))
