@@ -9,9 +9,13 @@ class LpuService:
 
     def get_data(self):
         query = "select * from lpudata"
+        titles = ["id", "label", "host", "port", "user", "password", "dbhost", "dbport", "dbuser", "dbpassword",
+                  "database"]
         try:
             data = self._db.run(query)
             if isinstance(data, list):
+                for i in range(len(data)):
+                    data[i] = dict(zip(titles, data[i]))
                 return data, True
             else:
                 return str(data), False
