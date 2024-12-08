@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 class SignParser:
-    def __init__(self):
+    def __init__(self, lpu_id=0):
         self._RE_ERROR_CODE = re.compile(r"(?<=\[ErrorCode:\s)\dx\w{8}(?=\])")
         self._RE_SPLIT = re.compile(r"(?<=\d-{7}\n)(.*?)(?=\d-{7}\n|={9})", re.DOTALL)
 
@@ -27,6 +27,8 @@ class SignParser:
         self._is_error = False
 
         self._date_format = "%d/%m/%Y %H:%M:%S UTC"
+
+        self._lpu_id = lpu_id
 
     def parse(self, text):
         self._error_code = self.get_error_code(text=text)
@@ -105,6 +107,9 @@ class SignParser:
 
         if not "t" in sign:
             sign["t"] = ""
+
+        if self._lpu_id:
+            sign["lpu_id"] = self._lpu_id
 
         return sign
 

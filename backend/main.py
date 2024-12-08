@@ -59,7 +59,7 @@ def get_lpu_signs(id: int):
                 return {
                     "error_msg": "ssh.get_signs: " + out
                 }
-            parser = SignParser()
+            parser = SignParser(lpu_id=id)
             error_code = parser.get_error_code(text=out)
             # print("parser.check_is_error: ", error_code)
             if parser.check_is_error(error_code):
