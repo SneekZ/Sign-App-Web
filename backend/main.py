@@ -33,9 +33,12 @@ def get_lpu_list():
     service = LpuService()
     data, ok = service.get_data()
     if ok:
-        return {"lpudata": data}
-    raise HTTPException(status_code=404)
-
+        return {"lpudata": data,
+                "error_msg": None
+            }
+    return {
+        "error_msg": data
+    }
 
 @app.get("/signs/{id}")
 def get_lpu_signs(id: int):
