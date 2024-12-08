@@ -4,6 +4,7 @@ from pyexpat.errors import messages
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
+from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 
 from LpuService import LpuService
@@ -11,6 +12,20 @@ from SshConnection import SshConnection
 from SignParser import SignParser
 
 app = FastAPI()
+
+origins = [
+    "http://localhost",
+    "http://localhost:8000",
+    "http://localhost:5173",  # Если у вас есть фронтенд на другом порту
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/lpu")
@@ -193,6 +208,6 @@ if __name__ == "__main__":
     uvicorn.run(
         "main:app",
         reload=True,
-        host="192.168.0.67",
+        host="localhost",
         port=52911
     )
