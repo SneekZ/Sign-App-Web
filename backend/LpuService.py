@@ -9,7 +9,7 @@ class LpuService:
 
     def get_data(self):
         query = "select * from lpudata"
-        titles = ["id", "label", "host", "port", "user", "password", "dbhost", "dbport", "dbuser", "dbpassword",
+        titles = ["value", "label", "host", "port", "user", "password", "dbhost", "dbport", "dbuser", "dbpassword",
                   "database"]
         try:
             data = self._db.run(query)

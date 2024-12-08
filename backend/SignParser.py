@@ -61,9 +61,9 @@ class SignParser:
             for sign in self._signs:
                 if sign["snils"] == snils:
                     if sign == same_signs_list[-1]:
-                        sign["new"] = True
+                        sign["is_new"] = True
                     else:
-                        sign["new"] = False
+                        sign["is_new"] = False
 
         for sign in self._signs:
             if "before" in sign:
@@ -102,6 +102,9 @@ class SignParser:
         if g:
             g = g.group()
             sign["name"] += g
+
+        if not "t" in sign:
+            sign["t"] = ""
 
         return sign
 
