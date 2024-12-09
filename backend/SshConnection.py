@@ -220,7 +220,7 @@ class SshConnection:
             logging.error(msg)
             return msg, False
 
-        command = f"/opt/cprocsp/bin/amd64/certmgr -list -delete -thumbprint {thumbprint}"
+        command = f"/opt/cprocsp/bin/amd64/certmgr -delete -thumbprint {thumbprint}"
 
         out, ok = self._exec_command(command)
         if ok:

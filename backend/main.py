@@ -16,7 +16,8 @@ app = FastAPI()
 origins = [
     "http://localhost",
     "http://localhost:8000",
-    "http://localhost:5173",  # Если у вас есть фронтенд на другом порту
+    "http://localhost:5173",
+    "http://192.168.0.67:6767"
 ]
 
 app.add_middleware(
@@ -181,8 +182,9 @@ def check_signs_by_id(id: int, ids: str):
     }
 
 
-@app.post("signs/{id}/delete/{thumbprint}")
+@app.get("/signs/{id}/delete/{thumbprint}")
 def delete_sign(id: int, thumbprint):
+    print(thumbprint)
     service = LpuService()
     conn_data, ok = service.get_lpu_data(id)
     if ok:
@@ -208,9 +210,10 @@ def delete_sign(id: int, thumbprint):
 
 
 if __name__ == "__main__":
-    uvicorn.run(
-        "main:app",
-        reload=True,
-        host="localhost",
-        port=52911
-    )
+    # uvicorn.run(
+    #     "main:app",
+    #     reload=True,
+    #     host="localhost",
+    #     port=52911
+    # )
+    print(get_lpu_signs(34))
